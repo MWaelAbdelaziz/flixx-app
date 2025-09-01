@@ -404,7 +404,7 @@ function addCommasToNumber(number) {
 // search data from TMBD API
 async function fetchAPIData(endpoint) {
   showSpinner();
-  const response = await fetch(`/.netlify/tmdb?endpoint=${endpoint}`);
+  const response = await fetch(`/.netlify/functions/tmdb?endpoint=${endpoint}`);
   const data = await response.json();
   hideSpinner();
   return data;
@@ -413,7 +413,7 @@ async function fetchAPIData(endpoint) {
 async function searchAPIData() {
   showSpinner();
   const response = await fetch(
-    `/.netlify/tmdb?endpoint=search/${global.search.type}&query=${global.search.term}&page=${global.search.page}`
+    `/.netlify/functions/tmdb?endpoint=search/${global.search.type}&query=${global.search.term}&page=${global.search.page}`
   );
   const data = await response.json();
   hideSpinner();
