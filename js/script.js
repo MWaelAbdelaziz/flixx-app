@@ -402,23 +402,18 @@ function addCommasToNumber(number) {
 }
 
 // search data from TMBD API
-async function searchAPIData() {
+async function fetchAPIData(endpoint) {
   showSpinner();
-
-  const response = await fetch(
-    `${global.api.apiUrl}search/${global.search.type}?api_key=${global.api.apiKey}&language=en-US&query=${global.search.term}&page=${global.search.page}`
-  );
+  const response = await fetch(`/.netlify/tmdb?endpoint=${endpoint}`);
   const data = await response.json();
   hideSpinner();
   return data;
 }
 
-// Fetch data from TMBD API
-async function fetchAPIData(endpoint) {
+async function searchAPIData() {
   showSpinner();
-
   const response = await fetch(
-    `${global.api.apiUrl}${endpoint}?api_key=${global.api.apiKey}&language=en-US`
+    `/.netlify/tmdb?endpoint=search/${global.search.type}&query=${global.search.term}&page=${global.search.page}`
   );
   const data = await response.json();
   hideSpinner();
